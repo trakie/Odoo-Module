@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="product_root_menu"
+        name="Food Sales">
+        <menuitem
+            id="product_menu"
+            name="Product"
+            action="product_action"/>
+        <menuitem
+            id="recipe_menu"
+            name="Recipe"
+            action="recipe_action"/>
+        <menuitem
+            id="customer_menu"
+            name="Customer"
+            action="customer_action"/>
+        <menuitem
+            id="order_menu"
+            name="Order"
+            action="order_action"/>
+    </menuitem>
+
+</odoo>

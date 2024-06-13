@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- food_sales.product kanban view -->
+<record id="model_name_view_kanban" model="ir.ui.view">
+    <field name="name">food_sales.product.view.kanban</field>
+    <field name="model">food_sales.product</field>
+    <field name="arch" type="xml">
+        <kanban string="List of Product">
+            <!-- Add your fields here -->
+            <field name="name"/>
+            <field name="desc"/>
+            <field name="price"/>
+            <field name="cost"/>
+            <field name="recipe_ids"/>
+
+            <templates>
+                <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_global_click">
+                        <div class="oe_kanban_details">
+                            <ul>
+                                <li>Name: <field name="name"/></li>
+                                <li>Price: <field name="price"/></li>
+                                <li>Desc: <field name="desc"/></li>
+                            </ul>
+
+                        </div>
+                    </div>    
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+<!-- food_sales.product search view -->
+<record id="product_view_search" model="ir.ui.view">
+    <field name="name">food_sales.product.view.search</field>
+    <field name="model">food_sales.product</field>
+    <field name="arch" type="xml">
+        <search string="Product Search">
+            <!-- Add your fields here -->
+            <field name="name"/>
+            <field name="price"/>
+            <field name="desc"/>
+            <filter string="Archived" name="is_archived" domain="[('active', '=', False)]"/>
+            <group name="name" string="Group By">
+                <filter name="price" string="Price"   context="{'group_by': 'price'}" />
+            </group>
+        </search>
+    </field>
+</record>
+
+    <!-- food_sales.product tree view -->
+    <record id="product_view_tree" model="ir.ui.view">
+        <field name="name">List of Products</field>
+        <field name="model">food_sales.product</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="desc"/>
+                <field name="price"/>
+                <field name="stock"/>
+                <field name="cost"/>
+                <field name="recipe_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- food_sales.product form view -->
+    <record id="product_view_form" model="ir.ui.view">
+        <field name="name">Product Form</field>
+        <field name="model">food_sales.product</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+<!--                    <field name="image" widget="image" class="oe_avatar"/>-->
+                    <group>
+                        <group name="product_info" string="Product Info">
+                            <field name="name"/>
+                            <field name="desc"/>
+                            <field name="category"/>
+                            <field name="stock"/>
+                            <field name="image" widget="image" class="float-left oe_avatar"/>
+                        </group>
+                        <group name="product_revenue" string="Revenue">
+                            <field name="price"/>
+                            <field name="cost"/>
+                        </group>
+                        <group name="product_recipe" string="Recipe">
+                            <field name="recipe_ids"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- food_sales.product action window -->
+    <record id="product_action" model="ir.actions.act_window">
+        <field name="name">Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">food_sales.product</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+</odoo>

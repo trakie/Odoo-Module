@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="order_view_search" model="ir.ui.view">
+       <field name="name">Search</field>
+       <field name="model">food_sales.order</field>
+        <field name="arch" type="xml">
+            <search string="Order Search">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <filter string="Pending" name="is_pending" domain="[('status', '=', 'pending' )]"/>
+                <filter string="In Transit" name="is_in_transit" domain="[('status', '=', 'in_transit' )]"/>
+                <filter string="Completed" name="is_completed" domain="[('status', '=', 'completed' )]"/>
+                <filter string="Canceled" name="is_canceled" domain="[('status', '=', 'canceled' )]"/>
+                <group name="name" string="Group By">
+                    <filter name="status" string="Status" context="{'group_by': 'status'}" />
+                </group>
+        </search>
+       </field>
+    </record>
+
+    <!-- food_sales.order form view -->
+    <record id="order_view_form" model="ir.ui.view">
+        <field name="name">Form Order</field>
+        <field name="model">food_sales.order</field>
+        <field name="arch" type="xml">
+            <form string="Order Form">
+                <header>
+                    <field name="status" widget='statusbar' options="{'clickable':'1'}"
+                    statusbar_visible='pending,in_transit,completed' attrs="{'invisible': [('name', '=', 'New')]}" />
+                    <button class="btn btn-danger" name="cancel_order" type="object" string="Cancel Order"
+                    attrs="{'invisible': ['|', ('name', '=', 'New'), ('status', '!=', 'pending')]}"
+                    confirm="Are you sure to cancel this order?"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Canceled" bg_color="bg-danger" attrs="{'invisible': [('status', '!=', 'canceled')]}"/>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group col="1">
+                        <group name="order_details" string="Order Details" >
+                            <field name="order_details_ids"/>
+                        </group>
+                        <group col="2" name="order_info" string="Order Info">
+                            <field name="customer_id"/>
+                            <field name="order_date"/>
+                        </group>
+                        <group name="order_revenue" string="Revenue">
+                            <field name="total"/>
+                            <field name="profit"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- food_sales.order tree view -->
+    <record id="order_view_tree" model="ir.ui.view">
+        <field name="name">List Order</field>
+        <field name="model">food_sales.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" readonly="1"/>
+                <field name="order_details_ids"/>
+                <field name="customer_id"/>
+                <field name="order_date"/>
+                <field name="total"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+   
+   <!-- food_sales.order action window -->
+   <record id="order_action" model="ir.actions.act_window">
+       <field name="name">Order</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">food_sales.order</field>
+       <field name="view_mode">tree,form</field>
+   </record>
+
+   <!-- food_sales.order_details form view -->
+  <!-- food_sales.order_details action window -->
+  <record id="order_details_action" model="ir.actions.act_window">
+      <field name="name">food_sales.order_details.action</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">food_sales.order_details</field>
+      <field name="view_mode">form</field>
+  </record>
+
+  <!-- food_sales.order_details form view -->
+  <record id="order_details_view_form" model="ir.ui.view">
+      <field name="name">food_sales.order_details.view.form</field>
+      <field name="model">food_sales.order_details</field>
+      <field name="arch" type="xml">
+          <form string="">
+              <sheet>
+                  <!-- <group>
+                        <field name="name"/>              
+                  </group> -->
+                  <group>
+                      <field name="product_id"/>
+                      <field name="product_name"/>
+                      <field name="product_price"/>
+                      <field name="product_quantity"/>
+                  </group>
+              </sheet>
+          </form>
+      </field>
+  </record>
+
+  <!-- food_sales.order_details tree view -->
+  <record id="order_details_view_tree" model="ir.ui.view">
+      <field name="name">food_sales.order_details.view.tree</field>
+      <field name="model">food_sales.order_details</field>
+      <field name="arch" type="xml">
+          <tree>
+              <!-- Add your fields here -->
+                <field name="product_name"/>
+                <field name="product_price"/>
+                <field name="product_quantity"/>
+          </tree>
+      </field>
+  </record>
+   
+</odoo>

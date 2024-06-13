@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+        <data noupdate="1">
+             <!-- Sequences for food_sales.recipe -->
+
+        <record id="seq_sale_order" model="ir.sequence">
+            <field name="name">Order ID</field>
+            <field name="code">food_sales.order</field>
+            <field name="prefix">O</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <record id="seq_sale_order_details" model="ir.sequence">
+            <field name="name">Order Detail ID</field>
+            <field name="code">food_sales.order_details</field>
+            <field name="prefix">OD</field>
+            <field name="padding">7</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+        </data>
+
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+            id="action_report_order"
+            model="food_sales.order"
+            report_type="qweb-pdf"
+            string="Report"
+            name="food_sales.order_template"
+            file="food_sales.order_template"
+        />
+</odoo>
+

@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_food_sales_product,access_food_sales_product,model_food_sales_product,base.group_user,1,1,1,1
+access_food_sales_recipe,access_food_sales_recipe,model_food_sales_recipe,base.group_user,1,1,1,1
+access_food_sales_order,access_food_sales_order,model_food_sales_order,base.group_user,1,1,1,1
+access_food_sales_order_details,access_food_sales_order_details,model_food_sales_order_details,base.group_user,1,1,1,1
+access_food_sales_customer,access_food_sales_customer,model_food_sales_customer,base.group_user,1,1,1,1

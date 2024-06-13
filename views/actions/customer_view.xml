@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <!-- food_sales.customer action window -->
+    <record id="customer_action" model="ir.actions.act_window">
+        <field name="name">Customer</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">food_sales.customer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_customer_filter" model="ir.ui.view">
+        <field name="name">food_sales.customer.view.search</field>
+        <field name="model">food_sales.customer</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_customer_tree" model="ir.ui.view">
+        <field name="name">food_sales.customer.view.tree</field>
+        <field name="model">food_sales.customer</field>
+          <field name="arch" type="xml">
+                <tree string="List of Customers">
+                    <field name="name"/>
+                    <field name="contact"/>
+                    <field name="address"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_customer_form" model="ir.ui.view">
+        <field name="name">food_sales.customer.form.view</field>
+        <field name="model">food_sales.customer</field>
+        <field name="arch" type="xml">
+            <form string="Customer Form">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="customer_orders" class="oe_stat_button" type="object" icon="fa-book">
+                            <div class="o_stat_info">
+                                <field class="o_stat_value" name="order_count"/>
+                                <span class="o_stat_text">Orders</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="contact"/>
+                            <field name="address"/>
+                        </group>
+                        <group>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
